@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preloader template</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: burlywood;
+      }
+
+      .main-text {
+        text-align: center;
+      }
+
+      .preloader {
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .loader-wrapper {
+        display: flex;
+      }
+
+      .logo {
+        width: 100px;
+      }
+
+      .loader-text {
+        display: flex;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .loader-dots {
+        font-size: 24px;
+        white-space: nowrap;
+      }
+
+      .loader-dots::after {
+        display: block;
+        content: "";
+        animation: loader-dots 1s infinite linear;
+      }
+
+      @keyframes loader-dots {
+        0% {
+          content: ".";
+        }
+
+        50% {
+          content: "..";
+        }
+
+        100% {
+          content: "...";
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="preloader">
+      <img class="logo" src="Hitech-Color.svg" alt="Logo" />
+      <div class="loader-wrapper">
+        <span class="loader-text">Loading</span>
+        <span class="loader-dots"></span>
+      </div>
+    </div>
+  </body>
+
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.querySelector(".loader-text").textContent = "Fetching";
+      }, 5000);
+
+      setTimeout(() => {
+        document.querySelector(".preloader").style.display = "none";
+        document.body.innerHTML = `<h1 class="main-text">Hello World!</h1>`;
+      }, 10000);
+    });
+  </script>
+</html>
